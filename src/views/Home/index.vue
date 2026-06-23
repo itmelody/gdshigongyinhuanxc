@@ -1,19 +1,6 @@
 <template>
   <div class="home-page">
-    <!-- 顶部欢迎区域 -->
-    <a-card class="welcome-card" :bordered="false">
-      <div class="welcome-content">
-        <div class="weather-info">
-          <CloudOutlined class="weather-icon" />
-        </div>
-        <div class="greeting">
-          <h2>Hi 早上好，欢迎登录本系统！</h2>
-          <p>{{ currentDate }} {{ currentWeekday }}</p>
-        </div>
-      </div>
-    </a-card>
-
-    <!-- 原料产量（巡检任务）统计 -->
+    <!-- 统计卡片区域 -->
     <a-row :gutter="[16, 16]" class="stats-section">
       <a-col :xs="24" :sm="8">
         <a-card class="stat-card" :bordered="false">
@@ -218,9 +205,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
-import dayjs from 'dayjs'
 import {
-  CloudOutlined,
   SafetyCertificateOutlined,
   ExclamationCircleOutlined,
   WarningOutlined,
@@ -234,10 +219,6 @@ import {
 
 const trendChartRef = ref<HTMLDivElement>()
 const typeChartRef = ref<HTMLDivElement>()
-
-// 当前日期和星期
-const currentDate = ref(dayjs().format('YYYY-MM-DD'))
-const currentWeekday = ref(dayjs().format('dddd'))
 
 // 图表周期选择
 const trendPeriod = ref('day')
@@ -421,45 +402,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #f0f5ff 0%, #e6f7ff 100%);
   min-height: calc(100vh - 120px);
   padding: 16px;
-
-  // 欢迎卡片
-  .welcome-card {
-    margin-bottom: 16px;
-    background: linear-gradient(90deg, #1890ff 0%, #40a9ff 100%);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
-
-    :deep(.ant-card-body) {
-      padding: 24px 32px;
-    }
-
-    .welcome-content {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-
-      .weather-icon {
-        font-size: 48px;
-        color: #fff;
-        opacity: 0.9;
-      }
-
-      .greeting {
-        h2 {
-          color: #fff;
-          font-size: 24px;
-          font-weight: 500;
-          margin: 0 0 8px 0;
-        }
-
-        p {
-          color: rgba(255, 255, 255, 0.9);
-          font-size: 16px;
-          margin: 0;
-        }
-      }
-    }
-  }
 
   // 统计卡片区域
   .stats-section {
