@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
     path: '/system',
     name: 'System',
     component: () => import('@/views/System/index.vue'),
-    meta: { title: '系统管理' }
+    meta: { title: '智能体配置' }
   }
 ]
 

@@ -94,7 +94,7 @@ const menuItems = [
   {
     key: 'system',
     icon: () => h(SettingOutlined),
-    label: '系统管理'
+    label: '智能体配置'
   }
 ]
 
