@@ -104,7 +104,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import dayjs from 'dayjs'
 import { DownloadOutlined } from '@ant-design/icons-vue'
