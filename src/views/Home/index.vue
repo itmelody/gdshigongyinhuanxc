@@ -190,65 +190,24 @@
                     <span class="value">{{ scene.location }}</span>
                   </div>
                 </div>
+                <div class="scene-actions">
+                  <a-button size="small">上一帧</a-button>
+                  <a-button size="small">下一帧</a-button>
+                  <a-button type="primary" size="small">查看实时</a-button>
+                </div>
               </div>
             </a-col>
           </a-row>
-          <div class="ai-actions">
-            <a-button size="small">上一帧</a-button>
-            <a-button size="small">下一帧</a-button>
-            <a-button type="primary" size="small">查看实时</a-button>
-          </div>
         </a-card>
       </a-col>
     </a-row>
 
-    <!-- 快捷操作区 -->
-    <a-card class="quick-actions" :bordered="false">
-      <template #title>
-        <div class="section-title">
-          <span> 快捷操作区</span>
-        </div>
-      </template>
-      <div class="action-buttons">
-        <a-button type="primary" size="large">
-          <VideoCameraOutlined /> 开始视频巡查
-        </a-button>
-        <a-button size="large">
-          <CameraOutlined /> 隐患随手拍
-        </a-button>
-        <a-button size="large">
-          <EyeOutlined /> 查看全部隐患
-        </a-button>
-        <a-button size="large">
-          <FileTextOutlined /> 生成巡查报告
-        </a-button>
-        <a-button size="large">
-          <SwapOutlined /> 切换工地
-        </a-button>
-      </div>
-    </a-card>
-
-    <!-- 系统消息 -->
-    <a-alert
-      message="💬 系统消息"
-      description="● 今日AI模型已升级，装修阶段吊篮违规识别准确率提升至92%<br/>● 省住建厅要求加强高温时段动火作业巡查，已自动增加对应巡检频次"
-      type="info"
-      show-icon
-      closable
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
-import {
-  VideoCameraOutlined,
-  CameraOutlined,
-  EyeOutlined,
-  FileTextOutlined,
-  SwapOutlined
-} from '@ant-design/icons-vue'
 import aiImg1 from '@/assets/ai1.jpeg'
 import aiImg2 from '@/assets/ai2.jpeg'
 import aiImg3 from '@/assets/ai3.jpeg'
@@ -931,36 +890,15 @@ onMounted(() => {
               }
             }
           }
+
+          .scene-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 10px;
+          }
         }
       }
-
-      .ai-actions {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-      }
-    }
-  }
-
-  // 快捷操作区
-  .quick-actions {
-    margin-bottom: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-
-    :deep(.ant-card-head) {
-      border-bottom: 1px solid #f0f0f0;
-      padding: 16px 20px;
-    }
-
-    :deep(.ant-card-body) {
-      padding: 20px;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
     }
   }
 }
