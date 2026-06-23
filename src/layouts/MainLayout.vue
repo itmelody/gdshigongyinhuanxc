@@ -3,20 +3,18 @@
     <!-- 顶部导航 -->
     <a-layout-header class="header">
       <div class="header-left">
-        <menu-unfold-outlined
-          v-if="appStore.collapsed"
-          class="trigger"
-          @click="appStore.toggleCollapsed"
-        />
-        <menu-fold-outlined
-          v-else
-          class="trigger"
-          @click="appStore.toggleCollapsed"
-        />
         <div class="logo">
           <img src="/logo.svg" alt="Logo" />
           <span>建筑工地施工隐患巡查智能体</span>
         </div>
+        <a-menu
+          v-model:selectedKeys="selectedKeys"
+          mode="horizontal"
+          theme="light"
+          :items="menuItems"
+          @click="handleMenuClick"
+          class="top-menu"
+        />
       </div>
       <div class="header-right">
         <a-space :size="16">
@@ -42,28 +40,10 @@
       </div>
     </a-layout-header>
 
-    <a-layout>
-      <!-- 侧边栏菜单 -->
-      <a-layout-sider
-        v-model:collapsed="appStore.collapsed"
-        :width="200"
-        breakpoint="lg"
-        collapsible
-      >
-        <a-menu
-          v-model:selectedKeys="selectedKeys"
-          mode="inline"
-          theme="dark"
-          :items="menuItems"
-          @click="handleMenuClick"
-        />
-      </a-layout-sider>
-
-      <!-- 主内容区 -->
-      <a-layout-content class="content">
-        <router-view />
-      </a-layout-content>
-    </a-layout>
+    <!-- 主内容区 -->
+    <a-layout-content class="content">
+      <router-view />
+    </a-layout-content>
   </a-layout>
 </template>
 
@@ -149,31 +129,23 @@ watch(
 <style scoped lang="scss">
 .layout {
   min-height: 100vh;
+  background: linear-gradient(135deg, #f0f5ff 0%, #e6f7ff 100%);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  background: linear-gradient(90deg, #1890ff 0%, #096dd9 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0 24px;
+  background: linear-gradient(90deg, #1890ff 0%, #40a9ff 100%);
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+  height: 64px;
 
   .header-left {
     display: flex;
     align-items: center;
-    gap: 16px;
-
-    .trigger {
-      font-size: 18px;
-      color: #fff;
-      cursor: pointer;
-      transition: color 0.3s;
-
-      &:hover {
-        color: #40a9ff;
-      }
-    }
+    gap: 32px;
+    flex: 1;
 
     .logo {
       display: flex;
@@ -182,9 +154,36 @@ watch(
       color: #fff;
       font-size: 18px;
       font-weight: 600;
+      white-space: nowrap;
 
       img {
-        height: 32px;
+        height: 36px;
+      }
+    }
+
+    .top-menu {
+      flex: 1;
+      background: transparent;
+      border-bottom: none;
+
+      :deep(.ant-menu-item) {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 15px;
+        font-weight: 500;
+
+        &:hover {
+          color: #fff;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        &.ant-menu-item-selected {
+          color: #fff;
+          background: rgba(255, 255, 255, 0.15);
+
+          &::after {
+            border-bottom-color: #fff;
+          }
+        }
       }
     }
   }
@@ -197,7 +196,16 @@ watch(
       align-items: center;
 
       &:hover {
-        color: #40a9ff;
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    :deep(.ant-btn-text) {
+      color: #fff;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.1);
       }
     }
   }
@@ -205,13 +213,6 @@ watch(
 
 .content {
   margin: 16px;
-  padding: 24px;
-  background: #fff;
-  border-radius: 4px;
   min-height: calc(100vh - 64px - 32px);
-}
-
-:deep(.ant-layout-sider) {
-  background: #001529;
 }
 </style>
