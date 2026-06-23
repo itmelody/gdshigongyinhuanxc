@@ -28,7 +28,7 @@
 
     <!-- 导入导出 -->
     <a-card title="导入导出" :bordered="false" class="config-card" style="margin-top: 16px">
-      <a-row :gutter="24">
+      <a-row :gutter="24" align="top">
         <a-col :span="12">
           <h4>导出配置</h4>
           <p class="hint-text">将当前项目配置导出为 JSON 文件</p>
@@ -50,7 +50,7 @@
         <a-col :span="12">
           <h4>导入配置</h4>
           <p class="hint-text">上传 JSON/YAML 格式配置文件</p>
-          <a-upload-dragger :before-upload="handleImportFile" accept=".json,.yaml,.yml">
+          <a-upload-dragger :before-upload="handleImportFile" accept=".json,.yaml,.yml" class="import-uploader">
             <p class="ant-upload-text">点击或拖拽文件到此区域</p>
             <p class="ant-upload-hint">支持 .json 和 .yaml 格式</p>
           </a-upload-dragger>
@@ -61,12 +61,12 @@
               show-icon
             />
           </div>
-          <a-space style="margin-top: 12px">
+          <div style="margin-top: 12px">
             <a-radio-group v-model:value="importMode">
               <a-radio value="overwrite">覆盖当前配置</a-radio>
               <a-radio value="saveAs">另存为新模板</a-radio>
             </a-radio-group>
-          </a-space>
+          </div>
         </a-col>
       </a-row>
     </a-card>
@@ -160,6 +160,11 @@ const handleImportFile = (file: File) => {
     font-size: 12px;
     color: #8c8c8c;
     margin-bottom: 12px;
+  }
+  .import-uploader {
+    :deep(.ant-upload-drag) {
+      padding: 24px 16px;
+    }
   }
 }
 </style>
