@@ -1,204 +1,241 @@
 <template>
   <div class="home-page">
-    <!-- 统计卡片区域 -->
-    <a-row :gutter="[16, 16]" class="stats-section">
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <SafetyCertificateOutlined class="stat-icon" style="color: #1890ff; background: rgba(24, 144, 255, 0.1);" />
-            <span class="stat-title">今日巡检任务</span>
+    <!-- 今日概览卡片 -->
+    <a-row :gutter="[16, 16]" class="overview-section">
+      <a-col :xs="24" :sm="12" :md="12" :lg="6">
+        <a-card class="overview-card stat-card" :bordered="false">
+          <div class="card-header">
+            <span class="icon">📊</span>
+            <span class="title">今日发现</span>
           </div>
-          <div class="stat-value">
-            <span class="number">22</span>
-            <span class="unit">个</span>
-          </div>
-          <div class="stat-trend down">
-            <span class="label">同比增长</span>
-            <span class="value">12% ↓</span>
+          <div class="card-body">
+            <div class="main-value">127 起</div>
+            <div class="trend up">↑ 较昨日+5</div>
           </div>
         </a-card>
       </a-col>
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <ExclamationCircleOutlined class="stat-icon" style="color: #52c41a; background: rgba(82, 196, 26, 0.1);" />
-            <span class="stat-title">月累巡检量</span>
+      <a-col :xs="24" :sm="12" :md="12" :lg="6">
+        <a-card class="overview-card stat-card warning" :bordered="false">
+          <div class="card-header">
+            <span class="icon">⏳</span>
+            <span class="title">待处置</span>
           </div>
-          <div class="stat-value">
-            <span class="number">686</span>
-            <span class="unit">个</span>
-          </div>
-          <div class="stat-trend up">
-            <span class="label">同比增长</span>
-            <span class="value">12% ↑</span>
+          <div class="card-body">
+            <div class="main-value">23 起</div>
+            <div class="trend warning">⚠️ 超时3起</div>
           </div>
         </a-card>
       </a-col>
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <WarningOutlined class="stat-icon" style="color: #faad14; background: rgba(250, 173, 20, 0.1);" />
-            <span class="stat-title">年累巡检量</span>
+      <a-col :xs="24" :sm="12" :md="12" :lg="6">
+        <a-card class="overview-card stat-card success" :bordered="false">
+          <div class="card-header">
+            <span class="icon">✅</span>
+            <span class="title">已闭环</span>
           </div>
-          <div class="stat-value">
-            <span class="number">1,869</span>
-            <span class="unit">个</span>
-          </div>
-          <div class="stat-trend down">
-            <span class="label">同比增长</span>
-            <span class="value">12% ↓</span>
+          <div class="card-body">
+            <div class="main-value">104 起</div>
+            <div class="trend up">↑ 较昨日+8</div>
           </div>
         </a-card>
       </a-col>
-    </a-row>
-
-    <!-- 成品产量（隐患管理）统计 -->
-    <a-row :gutter="[16, 16]" class="stats-section">
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <BugOutlined class="stat-icon" style="color: #ff4d4f; background: rgba(255, 77, 79, 0.1);" />
-            <span class="stat-title">发现隐患数</span>
+      <a-col :xs="24" :sm="12" :md="12" :lg="6">
+        <a-card class="overview-card stat-card rate" :bordered="false">
+          <div class="card-header">
+            <span class="icon">🔄</span>
+            <span class="title">闭环率</span>
           </div>
-          <div class="stat-value">
-            <span class="number">5</span>
-            <span class="unit">处</span>
-          </div>
-          <div class="stat-trend down">
-            <span class="label">同比减少</span>
-            <span class="value">8% ↓</span>
-          </div>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <CheckCircleOutlined class="stat-icon" style="color: #52c41a; background: rgba(82, 196, 26, 0.1);" />
-            <span class="stat-title">已整改隐患</span>
-          </div>
-          <div class="stat-value">
-            <span class="number">3</span>
-            <span class="unit">处</span>
-          </div>
-          <div class="stat-trend up">
-            <span class="label">同比增长</span>
-            <span class="value">15% ↑</span>
-          </div>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :sm="8">
-        <a-card class="stat-card" :bordered="false">
-          <div class="stat-header">
-            <ClockCircleOutlined class="stat-icon" style="color: #faad14; background: rgba(250, 173, 20, 0.1);" />
-            <span class="stat-title">待处理隐患</span>
-          </div>
-          <div class="stat-value">
-            <span class="number">2</span>
-            <span class="unit">处</span>
-          </div>
-          <div class="stat-trend down">
-            <span class="label">同比减少</span>
-            <span class="value">5% ↓</span>
+          <div class="card-body">
+            <div class="main-value">81.9%</div>
+            <div class="trend up">↑ 较昨日+2.1%</div>
           </div>
         </a-card>
       </a-col>
     </a-row>
 
-    <!-- 图表区域 -->
-    <a-row :gutter="[16, 16]" class="charts-section">
-      <a-col :xs="24" :lg="12">
-        <a-card class="chart-card" :bordered="false">
+    <!-- 实时预警 + 待办任务 -->
+    <a-row :gutter="[16, 16]" class="middle-section">
+      <a-col :xs="24" :lg="14">
+        <a-card class="warning-section" :bordered="false">
           <template #title>
-            <div class="card-title">
-              <SafetyCertificateOutlined class="title-icon" />
-              <span>巡检趋势分析</span>
+            <div class="section-title">
+              <span>⚠️ 实时预警</span>
+              <span class="subtitle">最新5条 · 滚动刷新</span>
             </div>
           </template>
           <template #extra>
-            <a-radio-group v-model:value="trendPeriod" size="small">
-              <a-radio-button value="day">日</a-radio-button>
-              <a-radio-button value="month">月</a-radio-button>
-              <a-radio-button value="year">年</a-radio-button>
-            </a-radio-group>
-          </template>
-          <div ref="trendChartRef" style="height: 280px"></div>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :lg="12">
-        <a-card class="chart-card" :bordered="false">
-          <template #title>
-            <div class="card-title">
-              <PieChartOutlined class="title-icon" />
-              <span>隐患类型分布</span>
+            <div class="legend">
+              <span class="legend-item"><span class="dot red"></span>重大</span>
+              <span class="legend-item"><span class="dot orange"></span>较大</span>
+              <span class="legend-item"><span class="dot yellow"></span>一般</span>
             </div>
           </template>
-          <template #extra>
-            <a-radio-group v-model:value="typePeriod" size="small">
-              <a-radio-button value="day">日</a-radio-button>
-              <a-radio-button value="month">月</a-radio-button>
-              <a-radio-button value="year">年</a-radio-button>
-            </a-radio-group>
-          </template>
-          <div ref="typeChartRef" style="height: 280px"></div>
-        </a-card>
-      </a-col>
-    </a-row>
-
-    <!-- 底部数据区域 -->
-    <a-row :gutter="[16, 16]" class="bottom-section">
-      <a-col :xs="24" :lg="16">
-        <a-card class="list-card" :bordered="false">
-          <template #title>
-            <div class="card-title">
-              <BellOutlined class="title-icon" />
-              <span>待办事项</span>
-            </div>
-          </template>
-          <a-list :data-source="activities" item-layout="horizontal" class="activity-list">
+          <a-list :data-source="warnings" item-layout="horizontal" class="warning-list">
             <template #renderItem="{ item }">
               <a-list-item>
-                <a-list-item-meta :description="item.time">
-                  <template #title>
-                    <div class="activity-title">
-                      <span class="dot" :class="getUrgencyClass(item.urgency)"></span>
-                      <span>{{ item.content }}</span>
-                    </div>
-                  </template>
-                </a-list-item-meta>
-                <div class="activity-status">
-                  <a-tag :color="getTypeColor(item.type)">{{ getTypeText(item.type) }}</a-tag>
-                  <span class="status-text">{{ item.status }}</span>
+                <div class="warning-item">
+                  <div class="warning-left">
+                    <span class="level-dot" :class="item.level"></span>
+                    <span class="project">{{ item.project }}</span>
+                    <span class="content">{{ item.content }}</span>
+                    <span class="status">→ {{ item.status }}</span>
+                  </div>
+                  <div class="warning-right">
+                    <span class="time">{{ item.time }}</span>
+                    <a-button v-if="item.actions.includes('查看')" type="link" size="small">查看</a-button>
+                    <a-button v-if="item.actions.includes('处置')" type="primary" size="small">处置</a-button>
+                    <a-button v-if="item.actions.includes('派单')" type="default" size="small">派单</a-button>
+                    <a-button v-if="item.actions.includes('追踪')" type="default" size="small">追踪</a-button>
+                    <a-button v-if="item.actions.includes('催办')" type="link" size="small" danger>催办</a-button>
+                    <a-button v-if="item.actions.includes('复核')" type="default" size="small">复核</a-button>
+                  </div>
                 </div>
               </a-list-item>
             </template>
           </a-list>
         </a-card>
       </a-col>
-      <a-col :xs="24" :lg="8">
-        <a-card class="progress-card" :bordered="false">
+      <a-col :xs="24" :lg="10">
+        <a-card class="todo-card" :bordered="false">
           <template #title>
-            <div class="card-title">
-              <BarChartOutlined class="title-icon" />
-              <span>计划完成情况</span>
+            <div class="section-title">
+              <span>📋 我的待办任务</span>
+              <span class="subtitle">共{{ tasks.length }}项 · 今日</span>
             </div>
           </template>
-          <div class="progress-list">
-            <div v-for="(item, index) in progressData" :key="index" class="progress-item">
-              <div class="progress-label">
-                <span>{{ item.name }}</span>
-                <span class="progress-value">{{ item.current }}/{{ item.total }} {{ item.unit }}</span>
-              </div>
-              <a-progress 
-                :percent="Math.round((item.current / item.total) * 100)" 
-                :stroke-color="getProgressColor(item.current / item.total)"
-                :show-info="false"
-              />
-              <div class="progress-percent">{{ Math.round((item.current / item.total) * 100) }}%</div>
+          <template #extra>
+            <div class="legend">
+              <span class="legend-item"><span class="dot red"></span>重大</span>
+              <span class="legend-item"><span class="dot orange"></span>较大</span>
+              <span class="legend-item"><span class="dot blue"></span>一般</span>
             </div>
+          </template>
+          <a-list :data-source="tasks" item-layout="horizontal" class="todo-list">
+            <template #renderItem="{ item }">
+              <a-list-item>
+                <div class="todo-item">
+                  <div class="todo-left">
+                    <a-tag :color="getLevelColor(item.level)" size="small">{{ item.level }}</a-tag>
+                    <span class="project">{{ item.project }}</span>
+                    <span class="title">{{ item.title }}</span>
+                    <span class="remaining">剩{{ item.remaining }}</span>
+                  </div>
+                  <div class="todo-right">
+                    <span class="time">{{ item.time }}</span>
+                    <a-button v-if="item.action === '处置'" type="primary" size="small">处置</a-button>
+                    <a-button v-else-if="item.action === '派单'" type="default" size="small">派单</a-button>
+                    <a-button v-else type="default" size="small">{{ item.action }}</a-button>
+                  </div>
+                </div>
+              </a-list-item>
+            </template>
+          </a-list>
+        </a-card>
+      </a-col>
+    </a-row>
+
+    <!-- 图表区域 -->
+    <a-row :gutter="[16, 16]" class="charts-section">
+      <a-col :xs="24" :md="8">
+        <a-card class="chart-card" :bordered="false">
+          <template #title>
+            <div class="card-title">
+              <span>隐患类型TOP5</span>
+            </div>
+          </template>
+          <div ref="typeChartRef" style="height: 280px"></div>
+        </a-card>
+      </a-col>
+      <a-col :xs="24" :md="8">
+        <a-card class="chart-card" :bordered="false">
+          <template #title>
+            <div class="card-title">
+              <span>阶段隐患分布</span>
+            </div>
+          </template>
+          <div ref="stageChartRef" style="height: 280px"></div>
+        </a-card>
+      </a-col>
+      <a-col :xs="24" :md="8">
+        <a-card class="chart-card" :bordered="false">
+          <template #title>
+            <div class="card-title">
+              <span>发现趋势（近7天）</span>
+            </div>
+          </template>
+          <div ref="trendChartRef" style="height: 280px"></div>
+        </a-card>
+      </a-col>
+    </a-row>
+
+    <!-- AI巡查画面 -->
+    <a-row :gutter="[16, 16]" class="bottom-section">
+      <a-col :xs="24">
+        <a-card class="ai-card" :bordered="false">
+          <template #title>
+            <div class="card-title">
+              <span>🎥 AI实时巡查画面</span>
+            </div>
+          </template>
+          <a-row :gutter="[16, 16]" class="ai-content">
+            <a-col :xs="24" :sm="12" :md="6" v-for="scene in aiScenes" :key="scene.id">
+              <div class="camera-view">
+                <img class="camera-image" :src="scene.image" :alt="scene.label" />
+                <div class="recognition-result">
+                  <div class="result-item">
+                    <span class="label">识别结果:</span>
+                    <span class="value">{{ scene.result }} <span class="confidence">{{ scene.confidence }}</span></span>
+                  </div>
+                  <div class="result-item">
+                    <span class="label">位置:</span>
+                    <span class="value">{{ scene.location }}</span>
+                  </div>
+                </div>
+              </div>
+            </a-col>
+          </a-row>
+          <div class="ai-actions">
+            <a-button size="small">上一帧</a-button>
+            <a-button size="small">下一帧</a-button>
+            <a-button type="primary" size="small">查看实时</a-button>
           </div>
         </a-card>
       </a-col>
     </a-row>
+
+    <!-- 快捷操作区 -->
+    <a-card class="quick-actions" :bordered="false">
+      <template #title>
+        <div class="section-title">
+          <span> 快捷操作区</span>
+        </div>
+      </template>
+      <div class="action-buttons">
+        <a-button type="primary" size="large">
+          <VideoCameraOutlined /> 开始视频巡查
+        </a-button>
+        <a-button size="large">
+          <CameraOutlined /> 隐患随手拍
+        </a-button>
+        <a-button size="large">
+          <EyeOutlined /> 查看全部隐患
+        </a-button>
+        <a-button size="large">
+          <FileTextOutlined /> 生成巡查报告
+        </a-button>
+        <a-button size="large">
+          <SwapOutlined /> 切换工地
+        </a-button>
+      </div>
+    </a-card>
+
+    <!-- 系统消息 -->
+    <a-alert
+      message="💬 系统消息"
+      description="● 今日AI模型已升级，装修阶段吊篮违规识别准确率提升至92%<br/>● 省住建厅要求加强高温时段动火作业巡查，已自动增加对应巡检频次"
+      type="info"
+      show-icon
+      closable
+    />
   </div>
 </template>
 
@@ -206,105 +243,172 @@
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import {
-  SafetyCertificateOutlined,
-  ExclamationCircleOutlined,
-  WarningOutlined,
-  BugOutlined,
-  CheckCircleOutlined,
-  ClockCircleOutlined,
-  PieChartOutlined,
-  BellOutlined,
-  BarChartOutlined
+  VideoCameraOutlined,
+  CameraOutlined,
+  EyeOutlined,
+  FileTextOutlined,
+  SwapOutlined
 } from '@ant-design/icons-vue'
+import aiImg1 from '@/assets/ai1.jpeg'
+import aiImg2 from '@/assets/ai2.jpeg'
+import aiImg3 from '@/assets/ai3.jpeg'
+import aiImg4 from '@/assets/ai4.jpeg'
 
-const trendChartRef = ref<HTMLDivElement>()
 const typeChartRef = ref<HTMLDivElement>()
+const stageChartRef = ref<HTMLDivElement>()
+const trendChartRef = ref<HTMLDivElement>()
 
-// 图表周期选择
-const trendPeriod = ref('day')
-const typePeriod = ref('day')
-
-// 模拟数据 - 待办事项
-const activities = ref([
-  { 
-    type: 'inspection', 
-    content: 'A区脚手架安全检查待审批', 
-    time: '2026-06-23 14:30',
-    urgency: 'urgent',
-    status: '任务审批 | 张国良'
+// 实时预警数据
+const warnings = ref([
+  {
+    level: 'red',
+    project: '滨江项目',
+    time: '2026-06-23 14:28:00',
+    content: '2#塔吊作业区 · 外架与作业面不同步（主体）',
+    status: '已派单 张安全',
+    actions: ['查看', '处置']
   },
-  { 
-    type: 'hazard', 
-    content: 'B区临时用电安全隐患待整改', 
-    time: '2026-06-23 13:20',
-    urgency: 'urgent',
-    status: '任务审批 | 李明'
+  {
+    level: 'red',
+    project: '余杭项目',
+    time: '2026-06-23 14:15:00',
+    content: '东侧基坑 · 临边防护缺失（基础）',
+    status: '待派单',
+    actions: ['派单', '查看']
   },
-  { 
-    type: 'rectify', 
-    content: 'C区高空作业防护已整改完成待验收', 
-    time: '2026-06-23 11:15',
-    urgency: 'normal',
-    status: '验收审批 | 王强'
+  {
+    level: 'orange',
+    project: '萧山项目',
+    time: '2026-06-23 13:52:00',
+    content: '装修作业面 · 吊篮超员>2人（装修）',
+    status: '处置中 李安全',
+    actions: ['追踪', '催办']
   },
-  { 
-    type: 'inspection', 
-    content: 'D区塔吊设备巡检计划待执行', 
-    time: '2026-06-23 10:00',
-    urgency: 'normal',
-    status: '任务审批 | 赵敏'
+  {
+    level: 'yellow',
+    project: '钱塘项目',
+    time: '2026-06-23 13:30:00',
+    content: '南侧通道 · 未佩戴安全帽（通用）',
+    status: '待复核',
+    actions: ['复核', '查看']
+  },
+  {
+    level: 'yellow',
+    project: '滨江项目',
+    time: '2026-06-23 13:05:00',
+    content: '加工区 · 圆盘锯缺防护罩（通用）',
+    status: '已闭环',
+    actions: ['查看']
   }
 ])
 
-// 进度数据
-const progressData = ref([
-  { name: '月度巡检完成率', current: 68.86, total: 81.48, unit: '' },
-  { name: '隐患整改率', current: 57.86, total: 78.48, unit: '' },
-  { name: '安全培训覆盖率', current: 68.86, total: 81.48, unit: '' },
-  { name: '设备完好率', current: 72.86, total: 75.48, unit: '' },
-  { name: '人员持证上岗率', current: 52.86, total: 82.48, unit: '' }
+// 待办任务
+const tasks = ref([
+  {
+    id: 1,
+    level: '重大',
+    project: '滨江项目',
+    title: '塔吊外架不同步',
+    time: '2026-06-23 14:28:00',
+    remaining: '1h32m',
+    action: '处置'
+  },
+  {
+    id: 2,
+    level: '较大',
+    project: '余杭项目',
+    title: '基坑临边缺失',
+    time: '2026-06-23 14:15:00',
+    remaining: '3h43m',
+    action: '派单'
+  },
+  {
+    id: 3,
+    level: '一般',
+    project: '钱塘项目',
+    title: '安全帽未戴',
+    time: '2026-06-23 13:30:00',
+    remaining: '超时32m',
+    action: '复核'
+  },
+  {
+    id: 4,
+    level: '一般',
+    project: '滨江项目',
+    title: '圆盘锯缺罩',
+    time: '2026-06-23 13:05:00',
+    remaining: '2h15m',
+    action: '处置'
+  },
+  {
+    id: 5,
+    level: '较大',
+    project: '萧山项目',
+    title: '电焊不规范',
+    time: '2026-06-23 12:48:00',
+    remaining: '4h20m',
+    action: '处置'
+  }
 ])
 
-const getTypeText = (type: string) => {
+// 已选中的任务
+const checkedTasks = ref<number[]>([])
+
+// 获取等级颜色
+const getLevelColor = (level: string) => {
   const map: Record<string, string> = {
-    inspection: '巡检',
-    hazard: '隐患',
-    rectify: '整改'
+    '重大': 'red',
+    '较大': 'orange',
+    '一般': 'blue'
   }
-  return map[type] || type
+  return map[level] || 'default'
 }
 
-const getTypeColor = (type: string) => {
-  const map: Record<string, string> = {
-    inspection: 'blue',
-    hazard: 'red',
-    rectify: 'green'
+// AI巡查场景数据
+const aiScenes = ref([
+  {
+    id: 1,
+    label: '未戴安全帽',
+    image: aiImg1,
+    result: '未佩戴安全帽',
+    confidence: '94.7%',
+    location: '南侧通道 #2摄像头'
+  },
+  {
+    id: 2,
+    label: '围挡缺失',
+    image: aiImg2,
+    result: '施工围挡缺失',
+    confidence: '91.3%',
+    location: '东侧围墙 #5摄像头'
+  },
+  {
+    id: 3,
+    label: '电焊作业不规范',
+    image: aiImg3,
+    result: '电焊未设防护屏',
+    confidence: '88.6%',
+    location: '加工区 #3摄像头'
+  },
+  {
+    id: 4,
+    label: '堆载不符合要求',
+    image: aiImg4,
+    result: '材料堆载超高',
+    confidence: '92.1%',
+    location: '北侧仓库 #7摄像头'
   }
-  return map[type] || 'default'
-}
-
-const getUrgencyClass = (urgency: string) => {
-  return urgency === 'urgent' ? 'urgent' : 'normal'
-}
-
-const getProgressColor = (ratio: number) => {
-  if (ratio >= 0.9) return '#52c41a'
-  if (ratio >= 0.7) return '#1890ff'
-  if (ratio >= 0.5) return '#faad14'
-  return '#ff4d4f'
-}
+])
 
 // 初始化图表
 onMounted(() => {
-  // 趋势图
-  if (trendChartRef.value) {
-    const trendChart = echarts.init(trendChartRef.value)
-    trendChart.setOption({
+  // 隐患类型TOP5条形图
+  if (typeChartRef.value) {
+    const typeChart = echarts.init(typeChartRef.value)
+    typeChart.setOption({
       tooltip: { 
         trigger: 'axis',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        borderColor: '#e8e8e8',
-        borderWidth: 1
+        axisPointer: { type: 'shadow' }
       },
       grid: {
         left: '3%',
@@ -313,45 +417,90 @@ onMounted(() => {
         containLabel: true
       },
       xAxis: {
-        type: 'category',
-        data: ['01月', '02月', '03月', '04月', '05月', '06月', '07月', '08月', '09月', '10月', '11月', '12月'],
-        axisLine: { lineStyle: { color: '#e8e8e8' } },
-        axisLabel: { color: '#8c8c8c' }
-      },
-      yAxis: { 
         type: 'value',
         axisLine: { show: false },
         axisTick: { show: false },
-        splitLine: { lineStyle: { color: '#f0f0f0' } },
-        axisLabel: { color: '#8c8c8c' }
+        splitLine: { lineStyle: { color: '#f0f0f0' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: ['吊篮悬停', '外架堆物', '电焊不规范', '临边防护缺失', '未戴安全帽'],
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: { fontSize: 12 }
       },
       series: [
         {
-          name: '巡检次数',
+          name: '数量',
           type: 'bar',
-          barWidth: '40%',
-          data: [20, 70, 50, 20, 10, 20, 10, 86, 20, 40, 20, 40],
+          data: [8, 12, 15, 18, 32],
           itemStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
               { offset: 0, color: '#1890ff' },
-              { offset: 1, color: '#69c0ff' }
+              { offset: 1, color: '#40a9ff' }
             ]),
-            borderRadius: [4, 4, 0, 0]
+            borderRadius: [0, 4, 4, 0]
+          },
+          label: {
+            show: true,
+            position: 'right',
+            fontSize: 12
           }
         }
       ]
     })
   }
 
-  // 类型分布图
-  if (typeChartRef.value) {
-    const typeChart = echarts.init(typeChartRef.value)
-    typeChart.setOption({
+  // 阶段分布环形图
+  if (stageChartRef.value) {
+    const stageChart = echarts.init(stageChartRef.value)
+    stageChart.setOption({
       tooltip: { 
-        trigger: 'axis',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        borderColor: '#e8e8e8',
-        borderWidth: 1
+        trigger: 'item',
+        formatter: '{b}: {c}%'
+      },
+      legend: {
+        orient: 'vertical',
+        right: 10,
+        top: 'center',
+        itemWidth: 12,
+        itemHeight: 12,
+        textStyle: { fontSize: 12 }
+      },
+      series: [
+        {
+          name: '阶段分布',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          center: ['40%', '50%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 14,
+              fontWeight: 'bold'
+            }
+          },
+          data: [
+            { value: 28, name: '通用', itemStyle: { color: '#1890ff' } },
+            { value: 18, name: '基础', itemStyle: { color: '#52c41a' } },
+            { value: 34, name: '主体', itemStyle: { color: '#faad14' } },
+            { value: 20, name: '装修', itemStyle: { color: '#ff4d4f' } }
+          ]
+        }
+      ]
+    })
+  }
+
+  // 发现趋势折线图
+  if (trendChartRef.value) {
+    const trendChart = echarts.init(trendChartRef.value)
+    trendChart.setOption({
+      tooltip: { 
+        trigger: 'axis'
       },
       grid: {
         left: '3%',
@@ -361,12 +510,14 @@ onMounted(() => {
       },
       xAxis: {
         type: 'category',
-        data: ['01月', '02月', '03月', '04月', '05月', '06月', '07月', '08月', '09月', '10月', '11月', '12月'],
+        boundaryGap: false,
+        data: ['一', '二', '三', '四', '五', '六', '日'],
         axisLine: { lineStyle: { color: '#e8e8e8' } },
         axisLabel: { color: '#8c8c8c' }
       },
       yAxis: { 
         type: 'value',
+        max: 80,
         axisLine: { show: false },
         axisTick: { show: false },
         splitLine: { lineStyle: { color: '#f0f0f0' } },
@@ -374,22 +525,20 @@ onMounted(() => {
       },
       series: [
         {
-          name: '隐患数量',
+          name: '发现数',
           type: 'line',
           smooth: true,
-          symbol: 'none',
-          data: [20, 50, 40, 60, 30, 20, 15, 25, 45, 80, 50, 30],
+          symbol: 'circle',
+          symbolSize: 6,
+          data: [45, 52, 38, 65, 58, 70, 62],
+          itemStyle: { color: '#1890ff' },
+          lineStyle: { width: 2, color: '#1890ff' },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               { offset: 0, color: 'rgba(24, 144, 255, 0.3)' },
               { offset: 1, color: 'rgba(24, 144, 255, 0.05)' }
             ])
-          },
-          lineStyle: {
-            width: 3,
-            color: '#1890ff'
-          },
-          itemStyle: { color: '#1890ff' }
+          }
         }
       ]
     })
@@ -403,8 +552,8 @@ onMounted(() => {
   min-height: calc(100vh - 120px);
   padding: 16px;
 
-  // 统计卡片区域
-  .stats-section {
+  // 今日概览区域
+  .overview-section {
     margin-bottom: 16px;
 
     .stat-card {
@@ -417,68 +566,266 @@ onMounted(() => {
         transform: translateY(-2px);
       }
 
+      &.warning {
+        border-left: 4px solid #faad14;
+      }
+
+      &.success {
+        border-left: 4px solid #52c41a;
+      }
+
+      &.rate {
+        border-left: 4px solid #1890ff;
+      }
+
       :deep(.ant-card-body) {
         padding: 20px;
       }
 
-      .stat-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
-
-        .stat-icon {
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 20px;
-          border-radius: 8px;
-        }
-
-        .stat-title {
-          font-size: 14px;
-          color: #8c8c8c;
-        }
-      }
-
-      .stat-value {
-        margin-bottom: 12px;
-
-        .number {
-          font-size: 32px;
-          font-weight: 600;
-          color: #262626;
-          margin-right: 4px;
-        }
-
-        .unit {
-          font-size: 14px;
-          color: #8c8c8c;
-        }
-      }
-
-      .stat-trend {
+      .card-header {
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 13px;
+        margin-bottom: 12px;
 
-        .label {
+        .icon {
+          font-size: 20px;
+        }
+
+        .title {
+          font-size: 14px;
           color: #8c8c8c;
         }
+      }
 
-        .value {
-          font-weight: 500;
+      .card-body {
+        .main-value {
+          font-size: 32px;
+          font-weight: 600;
+          color: #262626;
+          line-height: 1.2;
+          margin-bottom: 8px;
         }
 
-        &.up .value {
-          color: #52c41a;
+        .trend {
+          font-size: 13px;
+
+          &.up {
+            color: #52c41a;
+          }
+
+          &.warning {
+            color: #faad14;
+          }
+        }
+      }
+    }
+  }
+
+  // 中间区域（实时预警 + 待办任务）
+  .middle-section {
+    margin-bottom: 16px;
+
+    .warning-section,
+    .todo-card {
+      height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+
+      :deep(.ant-card-head) {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 16px 20px;
+        flex-shrink: 0;
+      }
+
+      :deep(.ant-card-body) {
+        padding: 20px;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #262626;
+
+        .subtitle {
+          font-size: 13px;
+          color: #8c8c8c;
+          font-weight: normal;
+        }
+      }
+
+      .legend {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+
+        .legend-item {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+
+            &.red { background: #ff4d4f; }
+            &.orange { background: #faad14; }
+            &.yellow { background: #faad14; }
+            &.blue { background: #1890ff; }
+          }
+        }
+      }
+    }
+
+    // 实时预警区域
+    .warning-section {
+      :deep(.ant-card-head) {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 16px 20px;
+      }
+
+      :deep(.ant-card-body) {
+        padding: 20px;
+      }
+
+      .warning-list {
+        :deep(.ant-list-item) {
+          padding: 12px 0;
+          border-bottom: 1px solid #f0f0f0;
+
+          &:last-child {
+            border-bottom: none;
+          }
         }
 
-        &.down .value {
-          color: #ff4d4f;
+        .warning-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+
+          .warning-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+
+            .level-dot {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              flex-shrink: 0;
+
+              &.red { background: #ff4d4f; }
+              &.orange { background: #faad14; }
+              &.yellow { background: #faad14; }
+            }
+
+            .project {
+              font-size: 12px;
+              color: #1890ff;
+              background: #e6f7ff;
+              padding: 1px 6px;
+              border-radius: 3px;
+              font-weight: 500;
+              flex-shrink: 0;
+            }
+
+            .content {
+              font-size: 14px;
+              color: #262626;
+            }
+
+            .status {
+              font-size: 13px;
+              color: #8c8c8c;
+            }
+          }
+
+          .warning-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+
+            .time {
+              font-size: 12px;
+              color: #8c8c8c;
+              font-family: 'Courier New', monospace;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+
+    // 待办任务样式
+    .todo-card {
+      .todo-list {
+        :deep(.ant-list-item) {
+          padding: 12px 0;
+          border-bottom: 1px solid #f0f0f0;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+
+        .todo-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+
+          .todo-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+
+            .project {
+              font-size: 12px;
+              color: #1890ff;
+              background: #e6f7ff;
+              padding: 1px 6px;
+              border-radius: 3px;
+              font-weight: 500;
+              flex-shrink: 0;
+            }
+
+            .title {
+              font-size: 14px;
+              color: #262626;
+            }
+
+            .remaining {
+              font-size: 12px;
+              color: #8c8c8c;
+              font-family: 'Courier New', monospace;
+            }
+          }
+
+          .todo-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+
+            .time {
+              font-size: 12px;
+              color: #8c8c8c;
+              font-family: 'Courier New', monospace;
+              white-space: nowrap;
+            }
+          }
         }
       }
     }
@@ -502,25 +849,18 @@ onMounted(() => {
       }
 
       .card-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
         font-size: 16px;
         font-weight: 500;
         color: #262626;
-
-        .title-icon {
-          font-size: 18px;
-          color: #1890ff;
-        }
       }
     }
   }
 
-  // 底部区域
+  // 底部区域（AI巡查画面）
   .bottom-section {
-    .list-card,
-    .progress-card {
+    margin-bottom: 16px;
+
+    .ai-card {
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
@@ -534,111 +874,93 @@ onMounted(() => {
       }
 
       .card-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
         font-size: 16px;
         font-weight: 500;
         color: #262626;
-
-        .title-icon {
-          font-size: 18px;
-          color: #1890ff;
-        }
-      }
-    }
-
-    // 待办事项列表
-    .activity-list {
-      :deep(.ant-list-item) {
-        padding: 12px 0;
-        border-bottom: 1px solid #f0f0f0;
-
-        &:last-child {
-          border-bottom: none;
-        }
       }
 
-      .activity-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        color: #262626;
+      .ai-content {
+        margin-bottom: 16px;
 
-        .dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-
-          &.urgent {
-            background: #ff4d4f;
-          }
-
-          &.normal {
-            background: #1890ff;
-          }
-        }
-      }
-
-      .activity-status {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        .status-text {
-          font-size: 13px;
-          color: #8c8c8c;
-        }
-      }
-    }
-
-    // 进度列表
-    .progress-list {
-      .progress-item {
-        margin-bottom: 20px;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-
-        .progress-label {
+        .camera-view {
+          height: 100%;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 8px;
-          font-size: 14px;
+          flex-direction: column;
 
-          span:first-child {
-            color: #262626;
+          .camera-image {
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: block;
           }
 
-          .progress-value {
-            color: #8c8c8c;
-            font-size: 13px;
+          .recognition-result {
+            background: #f0f5ff;
+            border-radius: 6px;
+            padding: 10px;
+            flex: 1;
+
+            .result-item {
+              display: flex;
+              justify-content: space-between;
+              gap: 6px;
+              margin-bottom: 6px;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              .label {
+                font-size: 12px;
+                color: #595959;
+                flex-shrink: 0;
+              }
+
+              .value {
+                font-size: 12px;
+                color: #262626;
+                font-weight: 500;
+                text-align: right;
+
+                .confidence {
+                  color: #ff4d4f;
+                  font-weight: 600;
+                }
+              }
+            }
           }
-        }
-
-        :deep(.ant-progress) {
-          margin-bottom: 4px;
-
-          .ant-progress-inner {
-            background-color: #f0f0f0;
-            border-radius: 10px;
-          }
-
-          .ant-progress-bg {
-            border-radius: 10px;
-          }
-        }
-
-        .progress-percent {
-          text-align: right;
-          font-size: 13px;
-          font-weight: 500;
-          color: #1890ff;
         }
       }
+
+      .ai-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+    }
+  }
+
+  // 快捷操作区
+  .quick-actions {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    :deep(.ant-card-head) {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 20px;
+    }
+
+    :deep(.ant-card-body) {
+      padding: 20px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
   }
 }
